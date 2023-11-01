@@ -19,8 +19,8 @@ public class Notification_task {
     public Notification_task() {
     }
 
-    public Notification_task(Long id, Long chatId, String text, LocalDateTime execData) {
-        this.id = id;
+    public Notification_task( Long chatId, String text, LocalDateTime execData) {
+
         this.chatId = chatId;
         this.text = text;
         this.execData = execData;
