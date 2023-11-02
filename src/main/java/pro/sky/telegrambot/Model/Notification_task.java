@@ -1,9 +1,6 @@
 package pro.sky.telegrambot.Model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,16 +11,17 @@ public class Notification_task {
    private Long id ;
    private Long chatId ;
    private String  text ;
-    private LocalDateTime execData;
+//   @Column(name = "exec_date")
+    private LocalDateTime execDate;
 
     public Notification_task() {
     }
 
-    public Notification_task( Long chatId, String text, LocalDateTime execData) {
+    public Notification_task( Long chatId, String text, LocalDateTime execDate) {
 
         this.chatId = chatId;
         this.text = text;
-        this.execData = execData;
+        this.execDate = execDate;
 
     }
 
@@ -51,12 +49,12 @@ public class Notification_task {
         this.text = text;
     }
 
-    public LocalDateTime getExecData() {
-        return execData;
+    public LocalDateTime getExecDate() {
+        return execDate;
     }
 
-    public void setExecData(LocalDateTime execData) {
-        this.execData = execData;
+    public void setExecDate(LocalDateTime execDate) {
+        this.execDate = execDate;
     }
 
     @Override
@@ -65,7 +63,7 @@ public class Notification_task {
                 "id=" + id +
                 ", chatId=" + chatId +
                 ", text='" + text + '\'' +
-                ", execData=" + execData +
+                ", execData=" + execDate +
                 '}';
     }
 
@@ -74,11 +72,11 @@ public class Notification_task {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Notification_task that = (Notification_task) o;
-        return Objects.equals(id, that.id) && Objects.equals(chatId, that.chatId) && Objects.equals(text, that.text) && Objects.equals(execData, that.execData);
+        return Objects.equals(id, that.id) && Objects.equals(chatId, that.chatId) && Objects.equals(text, that.text) && Objects.equals(execDate, that.execDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, chatId, text, execData);
+        return Objects.hash(id, chatId, text, execDate);
     }
 }

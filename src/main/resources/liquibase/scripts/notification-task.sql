@@ -2,12 +2,13 @@
 
 
 -- changeset alexandr:1
-create table notification_task(
+create table notification_task
+(
  id         bigserial primary key,
  chat_Id    bigint,
  text       varchar,
- exec_data  timestamp
-);
+ exec_date  timestamp
+ );
 
 
 
