@@ -36,13 +36,20 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
 
     @Override
     public int process(List<Update> updates) {
+
         updates.forEach(update -> {
+
+
             logger.info("Processing update: {}", update);
             Long chatId = update.message().chat().id();
             String firstNameMan = update.message().chat().firstName();
+
             if (update.message().text().equals("/start")) {
-                SendMessage message = new SendMessage(chatId,"Добро пожаловать, " + firstNameMan + " ! Введите задачу.ПРИМЕР ФОРМАТА : 01.01.2022 20:00 Сдать домашку");
+                SendMessage message = new SendMessage(chatId,  "Добро пожаловать, " + firstNameMan + " ! Введите задачу.ПРИМЕР ФОРМАТА : 01.01.2022 20:00 Сдать домашку");
                 SendResponse sendResponse = telegramBot.execute(message);
+
+
+
             }
             Pattern pattern = Pattern.compile("([0-9\\.\\:\\s]{16})(\\s)([\\W+]+)");
             Matcher matcher = pattern.matcher(update.message().text());
@@ -59,6 +66,9 @@ public class TelegramBotUpdatesListener implements UpdatesListener {
             if (date != null) {
                 LocalDateTime dateTime = LocalDateTime.parse(date, formatter);
                 notificationRepository.save(new Notification_task(chatId, item, dateTime));
+
+                SendMessage message = new SendMessage(chatId,"ответное сообщение после сохранения задачи");
+                telegramBot.execute(message);
             }
         });
         return UpdatesListener.CONFIRMED_UPDATES_ALL;

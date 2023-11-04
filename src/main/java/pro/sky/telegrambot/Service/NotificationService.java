@@ -8,10 +8,7 @@ import pro.sky.telegrambot.Model.Notification_task;
 import pro.sky.telegrambot.Repository.NotificationRepository;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @Service
 public class NotificationService {
@@ -27,7 +24,9 @@ public class NotificationService {
     public void sendNotification(LocalDateTime dateTime) {
         List<Notification_task> tasks = notificationRepository.findByExecDate(dateTime);
 tasks.forEach(t ->{
-    SendResponse response = telegramBot.execute(new SendMessage(t.getChatId(), t.getText()));
+    SendResponse response = telegramBot.execute(new SendMessage(t.getChatId(),  t.getText()));
 });
     }
+
+
 }

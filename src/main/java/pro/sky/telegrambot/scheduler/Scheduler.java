@@ -14,13 +14,14 @@ public class Scheduler {
     public Scheduler(NotificationService notificationService) {
         this.notificationService = notificationService;
     }
-    //    @Scheduled(fixedDelay = 1_000l)
-//    public void test() {
-//        System.out.println("ПРИВЕТ ИЗ ШЕДУЛЕРА");
+//        @Scheduled(fixedDelay = 1_000l)
+//    public void test1() {
+//
+//        System.out.println("Привет из шидлера");
 //    }
 //    @Scheduled(fixedDelay = 1_000l)
     @Scheduled(cron = "0 0/1 * * * *" )
-    public void test() {
+    public void notification() {
         notificationService.sendNotification(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
     }
 
